@@ -2,38 +2,15 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    display: flex;
-    flex-direction: column;
+    min-height: 100vh;
+    margin: 0;
 }
 
 .card {
     border: none;
-}
-
-.container {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
-}
-
-.img-fluid {
-    display: flex;
-    flex-direction: row;
-}
-
-.container {
-    display: flex;
-    flex-direction: column;
-    margin-top: 208px;
-}
-
-.row {
-    display: flex;
-    justify-content: center;
+    text-align: center;
 }
 
 .btn {
-    margin-top: 21px;
-    margin-bottom: 26px;
-    width: 110px;
+    margin-top: 15px;
 }
