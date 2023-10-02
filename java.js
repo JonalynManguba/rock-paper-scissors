@@ -1,33 +1,28 @@
 let playerScore = 0;
 let computerScore = 0;
-let gameStarted = false;
+let gameOver = false;
+const winningScore = 5;
 
 function startGame() {
-    gameStarted = true;
+    gameOver = false;
+    playerScore = 0;
+    computerScore = 0;
+    document.getElementById('playerScore').textContent = playerScore;
+    document.getElementById('computerScore').textContent = computerScore;
     document.querySelector('.btn-primary').style.display = 'none';
+    document.querySelector('#gameOverButton').style.display = 'none';
 }
 
 function playGame(playerMove) {
-    if (!gameStarted) {
-        alert("Click 'Play' to start the game.");
-        return;
-    }
+    if (gameOver) return;
 
-    const randomNumber = Math.random();
-    let computerMove = '';
-
-    if (randomNumber < 1 / 3) {
-        computerMove = 'rock';
-    } else if (randomNumber < 2 / 3) {
-        computerMove = 'paper';
-    } else {
-        computerMove = 'scissors';
-    }
+    const moves = ['rock', 'paper', 'scissors'];
+    const computerMove = moves[Math.floor(Math.random() * 3)];
 
     let result = '';
 
     if (playerMove === computerMove) {
-        result = 'It\'s a tie!';
+        result = "It's a tie!";
     } else if (
         (playerMove === 'rock' && computerMove === 'scissors') ||
         (playerMove === 'paper' && computerMove === 'rock') ||
@@ -35,26 +30,32 @@ function playGame(playerMove) {
     ) {
         result = 'You win!';
         playerScore++;
+        document.getElementById('winningSound').play();
     } else {
         result = 'Computer wins!';
         computerScore++;
+        document.getElementById('losingSound').play();
     }
 
-    // Display result in modal
     document.getElementById('modalResult').textContent = `You picked ${playerMove}. Computer picked ${computerMove}. ${result}`;
     document.getElementById('modalComputerMove').src = getComputerMoveImage(computerMove);
 
     document.getElementById('playerScore').textContent = playerScore;
     document.getElementById('computerScore').textContent = computerScore;
 
-    // Show the result modal
-    $('#resultModal').modal('show');
-}
+    if (playerScore >= winningScore) {
+        document.getElementById('modalResult').textContent = 'Congratulations, you\'re the winner!';
+        gameOver = true;
+    } else if (computerScore >= winningScore) {
+        document.getElementById('modalResult').textContent = 'Computer wins! Game Over';
+        gameOver = true;
+    }
 
-function continueGame() {
-    gameStarted = true;
-    document.querySelector('.btn-primary').style.display = 'block';
-    $('#resultModal').modal('hide');
+    $('#resultModal').modal('show');
+
+    if (gameOver) {
+        document.querySelector('#gameOverButton').style.display = 'block';
+    }
 }
 
 function getComputerMoveImage(computerMove) {
@@ -68,4 +69,13 @@ function getComputerMoveImage(computerMove) {
         default:
             return '';
     }
+}
+
+function continueGame() {
+    $('#resultModal').modal('hide');
+}
+
+function resetGame() {
+    document.querySelector('.btn-primary').style.display = 'block';
+    document.querySelector('#gameOverButton').style.display = 'none';
 }

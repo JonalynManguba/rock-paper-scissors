@@ -14,19 +14,19 @@
 
     <div class="container text-center">
         <h3 class="mt-5">Rock Paper Scissors</h3>
-        <button type="button" class="btn btn-primary" onclick="startGame()">START PLAYING</button>
+        <button type="button" class="btn btn-primary" id="playButton" onclick="startGame()">Play</button>
         <div class="row mt-4">
             <div class="col-4">
                 <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/Rock-paper-scissors_%28scissors%29.png/1200px-Rock-paper-scissors_%28scissors%29.png" alt="Scissors" class="img-fluid">
-                <button type="button" class="btn btn-outline-secondary" onclick="playGame('scissors')">Scissors</button>
+                <button type="button" class="btn btn-outline-secondary" id="scissorsButton" onclick="playGame('scissors')">Scissors</button>
             </div>
             <div class="col-4">
                 <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/af/Rock-paper-scissors_%28paper%29.png/1920px-Rock-paper-scissors_%28paper%29.png" alt="Paper" class="img-fluid">
-                <button type="button" class="btn btn-outline-secondary" onclick="playGame('paper')">Paper</button>
+                <button type="button" class="btn btn-outline-secondary" id="paperButton" onclick="playGame('paper')">Paper</button>
             </div>
             <div class="col-4">
                 <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Rock-paper-scissors_%28rock%29.png/1920px-Rock-paper-scissors_%28rock%29.png" alt="Rock" class="img-fluid">
-                <button type="button" class="btn btn-outline-secondary" onclick="playGame('rock')">Rock</button>
+                <button type="button" class="btn btn-outline-secondary" id="rockButton" onclick="playGame('rock')">Rock</button>
             </div>
         </div>
         <div class="card mt-4">
@@ -50,18 +50,19 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <p id="modalResult"></p>
+                    <p id="modalResult">Best of Luck!</p>
                     <img src="" alt="Computer's Move" id="modalComputerMove" class="img-fluid">
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="continueGame()">Continue</button>
+                    <button type="button" class="btn btn-primary" id="gameOverButton" onclick="resetGame()">Game Over</button>
                 </div>
             </div>
         </div>
     </div>
 
-
-
+    <audio id="winningSound" src="winning.mp3"></audio>
+    <audio id="losingSound" src="losing.mp3"></audio>
     <!--Local JS-->
     <script src="java.js">
     </script>
